@@ -10,7 +10,7 @@
 ## Comandos
 * Comando base:
 ``` npx artisan ```
-1. create [--entity <nome_da_entidade>]
+1. create --entity <nome_da_entidade>
 2. - --help
 3. - --version
 
