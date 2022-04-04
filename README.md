@@ -17,11 +17,11 @@
 ## Estrutura
 * Após executar a criação de alguma entidade no seu projeto, esse pacote irá criar a seguinte estrutura na raíz:
 - ``` src/ ```
-- ```    /domain ```
-- ```           /entity ```
-- ```                  /dtos ```
-- ```                  /infra ```
-- ```                  /repositories ```
-- ```                  /request ```
-- ```                  /response ```
-- ```                  /useCases ```
+- ``` ---/domain/ ```
+- ``` ----------/entity/ ```
+- ``` -----------------/dtos/ ```
+- ``` -----------------/infra/ ```
+- ``` -----------------/repositories/ ```
+- ``` -----------------/request/ ```
+- ``` -----------------/response/ ```
+- ``` -----------------/useCases/ ```
