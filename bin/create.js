@@ -1,11 +1,12 @@
 module.exports = { createStructure: createStructure };
 
 const fs = require("fs-extra");
+const path = require("path");
 
 function createStructure(entity) {
     console.log("criando estrutura");
-    const directoryEntity = __dirname + "\\entity";
-    const destination = __dirname + "\\..\\src\\domain\\" + entity;
+    const directoryEntity = path.join(__dirname, "entity");
+    const destination = path.join(__dirname, "..", "src", "domain", entity);
 
     console.log(directoryEntity, destination)
 
