@@ -12,7 +12,7 @@
   "bin": {
     "artisan": "./bin/index.js"
   },
-  "author": "filipe a.s",
+  "author": "Filipe a.s",
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^10.0.1",
