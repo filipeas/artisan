@@ -5,15 +5,15 @@
 1. [nodejs](https://nodejs.org/en/)
 
 ## Instalação
-1. Digite o camando ``` yarn ``` para instalar as dependências.
-2. Digite o comando ``` npm link ``` para criar um link global do pacote nas dependências do npm.
+1. Instale o pacote no seu projeto com o comando ``` npm i @filipeas/artisan ```.
+2. Digite o camando ``` yarn ``` para instalar as dependências.
 
 ## Desintalação
-1. Digite o comando ```npm rm --global artisan  ``` para remover o link global do pacote nas dependências do npm.
+1. Digite o comando ``` npm rm @filipeas/artisan ``` para remover o link global do pacote nas dependências do npm.
 
 ## Comandos
 * Comando base:
-``` npx artisan ``` ou ``` npm exec ```
+``` npx artisan ```.
 1. create --entity <nome_da_entidade>
 2. --help
 3. --version

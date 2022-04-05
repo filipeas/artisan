@@ -1,6 +1,6 @@
 {
-  "name": "artisan",
-  "version": "0.0.1",
+  "name": "@filipeas/artisan",
+  "version": "0.0.3",
   "description": "CLI para criar estrutura de projeto",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,12 @@
   "bin": {
     "artisan": "./bin/index.js"
   },
-  "author": "Filipe a.s",
+  "author": "Filipe A.S",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filipeas/artisan"
+  },
   "dependencies": {
     "fs-extra": "^10.0.1",
     "yargs": "^17.4.0"
