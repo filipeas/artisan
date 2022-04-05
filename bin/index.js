@@ -19,7 +19,8 @@ const options = yargs
     .argv;
 
 if (yargs.argv._[0] == 'create' && yargs.argv.entity && typeof yargs.argv.entity === 'string') {
-    create.createStructure(yargs.argv.entity);
+    const entity = yargs.argv.entity[0].toUpperCase() + yargs.argv.entity.substr(1);
+    create.createStructure(entity);
 } else {
     console.log("O comando para criar uma estrutura é: [artisan create --entity <entity_name>]")
 }
