@@ -19,7 +19,7 @@
     "url": "https://github.com/filipeas/artisan"
   },
   "publishConfig": {
-    "@filipeas:registry": "https://npm.pkg.github.com"
+    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "fs-extra": "^10.0.1",

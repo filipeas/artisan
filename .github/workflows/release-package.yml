@@ -1,4 +1,4 @@
-name: Pacote Artisan
+name: Pacote Artisan - github package
 
 on:
   push:
