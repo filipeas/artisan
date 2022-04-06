@@ -1,4 +1,4 @@
-name: artisan
+name: @filipeas/artisan
 
 on:
   release:
