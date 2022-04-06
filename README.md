@@ -1,5 +1,5 @@
 ## Projeto Artisan
-* Sistema de construção de estrutura em um projeto.
+* Sistema de construção de estrutura em um projeto. 
 
 * [artisan - Pacote no npm](https://www.npmjs.com/package/@filipeas/artisan)
 
