@@ -1,4 +1,4 @@
-name: @filipeas/artisan
+name: Artisan Package
 
 on:
   release:
