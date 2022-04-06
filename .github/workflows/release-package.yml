@@ -1,6 +1,9 @@
 name: Pacote Artisan
 
 on:
+  push:
+    branches:
+      - master 
   release:
     types: [created]
 
