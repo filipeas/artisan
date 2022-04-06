@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 name: Pacote Artisan
-=======
-name: Artisan Package
->>>>>>> 6443d002a5160975bc387df257907a5000b1d01b
 
 on:
   release:
