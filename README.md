@@ -1,7 +1,7 @@
 ## Projeto Artisan
 * Sistema de construção de estrutura em um projeto.
 
-* [artisan - npm](https://www.npmjs.com/package/@filipeas/artisan)
+* [artisan - Pacote no npm](https://www.npmjs.com/package/@filipeas/artisan)
 
 ## Dependências
 1. [nodejs](https://nodejs.org/en/)
