@@ -1,4 +1,4 @@
-name: @filipeas/artisan
+name: Pacote Artisan
 
 on:
   release:
