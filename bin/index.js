@@ -2,8 +2,9 @@
 
 const yargs = require("yargs");
 const create = require("./create.js");
+const init = require("./init.js");
 
-console.log("Bem-vindo ao artisan! \nUtilize o comando npx artisan --help para mais informações");
+console.log("Bem-vindo ao artisan! Utilize o comando [ npx artisan --help ] para mais informações.");
 
 const usage = "\Como usar: $0 <command> [options]";
 
@@ -18,7 +19,7 @@ const options = yargs
     .argv;
 
 if (yargs.argv.init) {
-    console.log("eontrou do init");
+    init.initStructure();
 }
 
 if (yargs.argv.create && yargs.argv.create[0] === "entity") {
