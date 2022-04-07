@@ -1,7 +1,7 @@
 name: Pacote Artisan - github package
 
 on:
-  push:
+  pull-request:
     branches:
       - master 
   release:
