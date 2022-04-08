@@ -14,7 +14,6 @@ function createStructure(entity) {
     console.log("criando estrutura");
 
     // caminhos
-    const directoryEntity = path.join(__dirname, "entity");
     const destination = path.join(__dirname, "..", "..", "..", "..", "src");
     const dirDomain = path.join(__dirname, "..", "..", "..", "..", "src", "domain");
     const dirEntity = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity);
