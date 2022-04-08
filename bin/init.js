@@ -10,18 +10,18 @@ function initStructure() {
     console.log("Iniciando criação da estrutura.");
 
     // caminhos
-    const destinationRaiz = path.join(__dirname, "..", "..");//  "..", ".."
-    const destinationInfraSrc = path.join(__dirname, "..", "..", "src");
-    const destinationTypes = path.join(__dirname, "..", "..", "src", "@types");//  "..", ".."
-    const destinationTypesExpress = path.join(__dirname, "..", "..", "src", "@types", "express");//"..", ".."
-    const destinationInfraHttp = path.join(__dirname, "..", "..", "src", "http");
-    const destinationInfraHttpContainer = path.join(__dirname, "..", "..", "src", "http", "container");
-    const destinationInfraHttpErrors = path.join(__dirname, "..", "..", "src", "http", "errors");
-    const destinationInfraHttpMiddlewares = path.join(__dirname, "..", "..", "src", "http", "middlewares");
-    const destinationInfraHttpRoutes = path.join(__dirname, "..", "..", "src", "http", "routes");
-    const destinationInfraHttpValidation = path.join(__dirname, "..", "..", "src", "http", "validations");
-    const destinationInfraTypeOrm = path.join(__dirname, "..", "..", "src", "typeorm");
-    const destinationInfraTypeOrmMigrations = path.join(__dirname, "..", "..", "src", "typeorm", "migrations");
+    const destinationRaiz = path.join(__dirname, "..", "..", "..", "..");
+    const destinationInfraSrc = path.join(__dirname, "..", "..", "..", "..", "src");
+    const destinationTypes = path.join(__dirname, "..", "..", "..", "..", "src", "@types");
+    const destinationTypesExpress = path.join(__dirname, "..", "..", "..", "..", "src", "@types", "express");
+    const destinationInfraHttp = path.join(__dirname, "..", "..", "..", "..", "src", "http");
+    const destinationInfraHttpContainer = path.join(__dirname, "..", "..", "..", "..", "src", "http", "container");
+    const destinationInfraHttpErrors = path.join(__dirname, "..", "..", "..", "..", "src", "http", "errors");
+    const destinationInfraHttpMiddlewares = path.join(__dirname, "..", "..", "..", "..", "src", "http", "middlewares");
+    const destinationInfraHttpRoutes = path.join(__dirname, "..", "..", "..", "..", "src", "http", "routes");
+    const destinationInfraHttpValidation = path.join(__dirname, "..", "..", "..", "..", "src", "http", "validations");
+    const destinationInfraTypeOrm = path.join(__dirname, "..", "..", "..", "..", "src", "typeorm");
+    const destinationInfraTypeOrmMigrations = path.join(__dirname, "..", "..", "..", "..", "src", "typeorm", "migrations");
 
     // criar .env.example
     createRoot.createFile(destinationRaiz);
