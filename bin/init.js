@@ -1,3 +1,4 @@
+#!/usr/bin/env zx
 module.exports = { initStructure: initStructure };
 
 const fs = require("fs");
@@ -5,6 +6,7 @@ const path = require("path");
 const createRoot = require("./init/createRoot.js");
 const createTypes = require("./init/createTypes.js");
 const createInfra = require("./init/createInfra.js");
+const createDependencies = require("./init/createDependencies.js");
 
 function initStructure() {
     console.log("Iniciando criação da estrutura.");
@@ -22,6 +24,9 @@ function initStructure() {
     const destinationInfraHttpValidation = path.join(__dirname, "..", "..", "..", "..", "src", "http", "validations");
     const destinationInfraTypeOrm = path.join(__dirname, "..", "..", "..", "..", "src", "typeorm");
     const destinationInfraTypeOrmMigrations = path.join(__dirname, "..", "..", "..", "..", "src", "typeorm", "migrations");
+
+    // copiar dependencias no package.json
+    createDependencies.copy(destinationRaiz);
 
     // criar .env.example
     createRoot.createFile(destinationRaiz);
