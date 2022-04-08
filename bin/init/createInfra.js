@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 function createFile(
+    destinationInfraHttp,
     destinationInfraHttpContainer,
     destinationInfraHttpErrors,
     destinationInfraHttpMiddlewares,
@@ -289,7 +290,103 @@ function createFile(
         console.log("Arquivo http/routes/user.routes.ts criado com sucesso.");
     });
 
-    // validations
-    // server.ts
-    // typeorm
+    // cria arquivo http/validations/CreateUserSchema.ts
+    fs.appendFile(
+        path.join(destinationInfraHttpValidation, "CreateUserSchema.ts"),
+        `
+        import { object, string } from 'yup';
+
+        export const CreateUserSchema = object({
+        name: string().min(1).required(),
+        email: string().min(1).required(),
+        password: string().min(1).required(),
+        });
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/validations/CreateUserSchema.ts criado com sucesso.");
+    });
+
+    // cria arquivo http/validations/UpdateUserSchema.ts
+    fs.appendFile(
+        path.join(destinationInfraHttpValidation, "UpdateUserSchema.ts"),
+        `
+        import { object, string } from 'yup';
+
+        export const UpdateUserSchema = object({
+        name: string().min(1).required(),
+        });
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/validations/UpdateUserSchema.ts criado com sucesso.");
+    });
+
+    // cria arquivo http/validations/UpdatePasswordUserSchema.ts
+    fs.appendFile(
+        path.join(destinationInfraHttpValidation, "UpdatePasswordUserSchema.ts"),
+        `
+        import { object, string } from 'yup';
+
+        export const UpdatePasswordUserSchema = object({
+            c_password: string().min(1).required(),
+            new_password: string().min(1).required(),
+        });
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/validations/UpdatePasswordUserSchema.ts criado com sucesso.");
+    });
+
+    // cria arquivo http/server.ts
+    fs.appendFile(
+        path.join(destinationInfraHttp, "server.ts"),
+        `
+        import 'dotenv/config';
+        import 'reflect-metadata';
+        import 'express-async-errors';
+
+        import express from 'express';
+
+        import { handleException } from './middlewares/handleException';
+
+        import './container';
+
+        import createConnection from '../typeorm';
+
+        import { routes } from './routes';
+
+        createConnection();
+        const app = express();
+
+        app.use(express.json());
+
+        app.use(routes);
+
+        app.use(handleException);
+
+        app.listen(process.env.APP_PORT, () => {
+            console.log(\`Server on ${process.env.APP_URL}\`);
+        });
+    `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/server.ts criado com sucesso.");
+    });
+
+    // cria arquivo http/typeorm/index.ts
+    fs.appendFile(
+        path.join(destinationInfraTypeOrm, "index.ts"),
+        `
+        import 'dotenv/config';
+        import { Connection, createConnection, getConnectionOptions } from 'typeorm';
+
+        export default async (host = process.env.DB_HOST): Promise<Connection> => {
+            const defaultOptions = await getConnectionOptions();
+            return createConnection(
+                Object.assign(defaultOptions, {
+                    host,
+                }),
+            );
+        };
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/typeorm/index.ts criado com sucesso.");
+    });
 }
