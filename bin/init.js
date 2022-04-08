@@ -1,4 +1,3 @@
-#!/usr/bin/env zx
 module.exports = { initStructure: initStructure };
 
 const fs = require("fs");
