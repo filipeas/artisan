@@ -233,7 +233,7 @@ function createFile(
         `
         import { response, Router } from 'express';
         import { authenticateRouter } from './authenticate.routes';
-        import { usersRouter } from './users.routes';
+        import { usersRouter } from './user.routes';
 
         const routes = Router();
 
