@@ -1,6 +1,6 @@
 name: Pacote Artisan - npm package
 on:
-  pull_request:
+  push:
     branches:
       - master
 jobs:
