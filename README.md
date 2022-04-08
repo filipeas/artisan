@@ -1,27 +1,28 @@
-## Projeto Artisan
-* Sistema de construção de estrutura em um projeto.
+## Artisan
+* Structuring system for an ExpressJs project.
+* Version [Production] release 0.2.0
+* [artisan - npm package](https://www.npmjs.com/package/@filipeas/artisan)
 
-* [artisan - Pacote no npm](https://www.npmjs.com/package/@filipeas/artisan)
-
-## Dependências
+## Dependencies
 1. [nodejs](https://nodejs.org/en/)
 
-## Instalação
-1. Instale o pacote no seu projeto com o comando ``` npm i @filipeas/artisan ```.
-2. Digite o camando ``` yarn ``` para instalar as dependências.
+## Installations
+1. Install the package in your project with the command ``` npm i @filipeas/artisan ```.
+2. Digit the command ``` yarn ``` for install dependencies.
 
-## Desintalação
-1. Digite o comando ``` npm rm @filipeas/artisan ``` para remover o link global do pacote nas dependências do npm.
+## Uninstall
+1. Digit the command ``` npm rm @filipeas/artisan ``` for remove package in yours dependencies.
 
-## Comandos
-* Comando base:
+## Commands
+* All commands of artisan:
 ``` npx artisan ```.
-1. create --entity <nome_da_entidade>
-2. --help
-3. --version
+1. --create entity <nome_da_entidade> [create a entity in src/domain/]
+2. --init [initialize a project]
+3. --help [get help for commands]
+4. --version [get version of artisan]
 
-## Estrutura
-* Após executar a criação de alguma entidade no seu projeto, esse pacote irá criar a seguinte estrutura na raíz:
+## Structure
+* The command ``` artisan --create entity <entity> ``` creates an entity in the ``` src/domain/ ``` directory at the root of your project:
 - ``` src/ ```
 - ``` ---/domain/ ```
 - ``` ----------/entity/ ```
@@ -34,3 +35,16 @@
 - ``` -----------------/request/ ```
 - ``` -----------------/response/ ```
 - ``` -----------------/useCases/ ```
+
+* The command ``` artisan --init ``` command performs the initial structuring of the project with the artisan pattern:
+- ``` ---/@types/ ```
+- ``` ----------/express/ ```
+- ``` ---/infra/ ```
+- ``` ---------/http/ ```
+- ``` --------------/container/ ```
+- ``` --------------/errors/ ```
+- ``` --------------/middlewares/ ```
+- ``` --------------/routes/ ```
+- ``` --------------/validations/ ```
+- ``` ---------/typeorm/ ```
+- ``` -----------------/migrations/ ```
