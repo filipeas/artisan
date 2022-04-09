@@ -14,6 +14,20 @@ function copy(destinationRaiz) {
         // parse JSON object
         const package = JSON.parse(data.toString());
 
+        // adicionar scripts
+        const scripts = {
+            "dev:server": "tsnd -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only --respawn src/infra/http/server.ts",
+            "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
+            "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
+        }
+        Object.assign(package, { "scripts": scripts });
+        fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+            if (err) {
+                throw err;
+            }
+            console.log("scripts salvo com sucesso no arquivo package.json.");
+        });
+
         // verifica se chave dependencies existe
         if (package.dependencies) {
             // se chave dependencies já existe, só atualiza pacotes do artisan no arquivo package.json
