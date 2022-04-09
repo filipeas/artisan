@@ -2,6 +2,7 @@ module.exports = { initStructure: initStructure };
 
 const fs = require("fs");
 const path = require("path");
+const create = require("./create.js");
 const createRoot = require("./init/createRoot.js");
 const createTypes = require("./init/createTypes.js");
 const createInfra = require("./init/createInfra.js");
@@ -86,4 +87,8 @@ function initStructure() {
         destinationInfraHttpValidation,
         destinationInfraTypeOrm
     );
+
+    // cria entidade user
+    const entity = "User";
+    create.createStructure(entity);
 }
