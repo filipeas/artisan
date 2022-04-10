@@ -10,7 +10,8 @@ function createFile(
     destinationInfraHttpMiddlewares,
     destinationInfraHttpRoutes,
     destinationInfraHttpValidation,
-    destinationInfraTypeOrm
+    destinationInfraTypeOrm,
+    destinationInfraTypeOrmMigrations
 ) {
     // cria arquivo http/container/index.ts
     fs.appendFile(
@@ -388,5 +389,74 @@ function createFile(
         `, function (err) {
         if (err) throw err;
         console.log("Arquivo http/typeorm/index.ts criado com sucesso.");
+    });
+
+    // cria arquivo http/typeorm/migrations/user
+    fs.appendFile(
+        path.join(destinationInfraTypeOrmMigrations, "1648640053667-CreateUser.ts"),
+        `
+        import { MigrationInterface, QueryRunner, Table } from "typeorm";
+
+        export class CreateUser1648640053667 implements MigrationInterface {
+
+            public async up(queryRunner: QueryRunner): Promise<void> {
+                await queryRunner.createTable(
+                    new Table({
+                        name: 'users',
+                        columns: [
+                            {
+                                name: 'id',
+                                type: 'int',
+                                generationStrategy: 'increment',
+                                isGenerated: true,
+                                isPrimary: true,
+                                isNullable: false,
+                            },
+                            {
+                                name: 'name',
+                                type: 'varchar',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'email',
+                                type: 'varchar',
+                                isNullable: false,
+                                isUnique: true,
+                            },
+                            {
+                                name: 'password',
+                                type: 'varchar',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'created_at',
+                                type: 'timestamp',
+                                default: 'now()',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'updated_at',
+                                type: 'timestamp',
+                                default: 'now()',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'deleted_at',
+                                type: 'timestamp',
+                                isNullable: true,
+                            },
+                        ],
+                    }),
+                );
+            }
+
+            public async down(queryRunner: QueryRunner): Promise<void> {
+                await queryRunner.dropTable('users');
+            }
+
+        }
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo http/typeorm/migrations/1648640053667-CreateUser.ts criado com sucesso.");
     });
 }

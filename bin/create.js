@@ -10,7 +10,7 @@ const createResponse = require("./createResponse.js");
 const createUseCases = require("./createUseCases.js");
 const createRepositories = require("./createRepositories.js");
 
-function createStructure(develop, entity) {
+function createStructure(develop, createUser, entity) {
     console.log("criando estrutura");
 
     // definindo caminhos
@@ -23,6 +23,9 @@ function createStructure(develop, entity) {
     // caminhos
     const destination = path.join(__dirname, rollPath, "src");
     const dirDomain = path.join(__dirname, rollPath, "src", "domain");
+    const destinationInfra = path.join(__dirname, rollPath, "src", "infra");
+    const destinationInfraTypeOrm = path.join(__dirname, rollPath, "src", "infra", "typeorm");
+    const destinationInfraTypeOrmMigrations = path.join(__dirname, rollPath, "src", "infra", "typeorm", "migrations");
     const dirEntity = path.join(__dirname, rollPath, "src", "domain", entity);
     const dirDtos = path.join(__dirname, rollPath, "src", "domain", entity, "dtos");
     const dirInfra = path.join(__dirname, rollPath, "src", "domain", entity, "infra");
@@ -47,6 +50,9 @@ function createStructure(develop, entity) {
     // criando diretorios
     if (!fs.existsSync(destination)) fs.mkdirSync(destination);
     if (!fs.existsSync(dirDomain)) fs.mkdirSync(dirDomain);
+    if (!fs.existsSync(destinationInfra)) fs.mkdirSync(destinationInfra);
+    if (!fs.existsSync(destinationInfraTypeOrm)) fs.mkdirSync(destinationInfraTypeOrm);
+    if (!fs.existsSync(destinationInfraTypeOrmMigrations)) fs.mkdirSync(destinationInfraTypeOrmMigrations);
     if (!fs.existsSync(dirEntity)) fs.mkdirSync(dirEntity);
     if (!fs.existsSync(dirDtos)) fs.mkdirSync(dirDtos);
     if (!fs.existsSync(dirInfra)) fs.mkdirSync(dirInfra);
@@ -81,5 +87,5 @@ function createStructure(develop, entity) {
     createResponse.createFile(dirResponse, entity);
 
     // criando arquivos para o diretorio useCases
-    createUseCases.createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuthUser, entity);
+    createUseCases.createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuthUser, destinationInfraTypeOrmMigrations, createUser, entity);
 }

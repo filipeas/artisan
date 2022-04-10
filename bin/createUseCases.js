@@ -3,7 +3,7 @@ module.exports = { createFile: createFile };
 const fs = require("fs");
 const path = require("path");
 
-function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuth, entity) {
+function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuth, destinationInfraTypeOrmMigrations, createUser, entity) {
     /**
      * create
      */
@@ -190,7 +190,7 @@ function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dir
     /**
      * auth
      */
-     fs.appendFile(
+    fs.appendFile(
         path.join(dirUseCasesAuth, "Auth" + entity) + "Controller.ts",
         `import { Request, Response } from 'express';
         import { container } from 'tsyringe';
@@ -245,4 +245,60 @@ function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dir
         if (err) throw err;
         console.log("Arquivo useCases create UseCase criado com sucesso.");
     });
+
+    // cria arquivo http/typeorm/migrations/entity
+    if (!createUser) {
+        const randomNumber = new Date().valueOf().toString();
+        fs.appendFile(
+            path.join(destinationInfraTypeOrmMigrations, randomNumber + "-Create" + entity + ".ts"),
+            `
+        import { MigrationInterface, QueryRunner, Table } from "typeorm";
+
+        export class Create${entity + randomNumber} implements MigrationInterface {
+
+            public async up(queryRunner: QueryRunner): Promise<void> {
+                await queryRunner.createTable(
+                    new Table({
+                        name: '${entity.toLowerCase()}',
+                        columns: [
+                            {
+                                name: 'id',
+                                type: 'int',
+                                generationStrategy: 'increment',
+                                isGenerated: true,
+                                isPrimary: true,
+                                isNullable: false,
+                            },
+                            {
+                                name: 'created_at',
+                                type: 'timestamp',
+                                default: 'now()',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'updated_at',
+                                type: 'timestamp',
+                                default: 'now()',
+                                isNullable: false,
+                            },
+                            {
+                                name: 'deleted_at',
+                                type: 'timestamp',
+                                isNullable: true,
+                            },
+                        ],
+                    }),
+                );
+            }
+
+            public async down(queryRunner: QueryRunner): Promise<void> {
+                await queryRunner.dropTable('${entity.toLowerCase()}');
+            }
+
+        }
+        `, function (err) {
+            if (err) throw err;
+            console.log(`Arquivo http/typeorm/migrations/${randomNumber}-Create${entity}.ts criado com sucesso.`);
+        });
+    }
 }

@@ -5,7 +5,7 @@ const create = require("./create.js");
 const init = require("./init.js");
 
 // variavel de controle para testes
-const develop = true;
+const develop = false;
 
 console.log("Bem-vindo ao artisan! Utilize o comando [ npx artisan --help ] para mais informações.");
 
@@ -22,11 +22,11 @@ const options = yargs
     .argv;
 
 if (yargs.argv.init) {
-    init.initStructure(develop);
+    init.initStructure(true, develop);
 }
 
 if (yargs.argv.create && yargs.argv.create[0] === "entity") {
     let entity = yargs.argv.create[1].toLowerCase();
     entity = entity[0].toUpperCase() + entity.substr(1);
-    create.createStructure(develop, entity);
+    create.createStructure(develop, false, entity);
 }
