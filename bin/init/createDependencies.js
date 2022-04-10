@@ -14,19 +14,37 @@ function copy(destinationRaiz) {
         // parse JSON object
         let JSONpackage = JSON.parse(data.toString());
 
-        // adicionar scripts
-        const scripts = {
-            "dev:server": "tsnd -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only --respawn src/infra/http/server.ts",
-            "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
-            "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
-        }
-        Object.assign(JSONpackage, { "scripts": scripts });
-        fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
-            if (err) {
-                throw err;
+        // verifica se chave scripts existe
+        if (JSONpackage.scripts) {
+            // adicionar scripts
+            const scripts = {
+                "dev:server": "tsnd -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only --respawn src/infra/http/server.ts",
+                "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
+                "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
             }
-            console.log("scripts salvo com sucesso no arquivo package.json.");
-        });
+            Object.assign(JSONpackage.scripts, scripts);
+            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("scripts salvo com sucesso no arquivo package.json.");
+            });
+        } else {
+            // criar chave scripts e inserir no package.json
+            const scripts = {
+                "dev:server": "tsnd -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only --respawn src/infra/http/server.ts",
+                "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
+                "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
+            }
+
+            const data = { ...JSONpackage, "scripts": scripts };
+            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("scripts salvo com sucesso no arquivo package.json.");
+            });
+        }
 
         // verifica se chave dependencies existe
         if (JSONpackage.dependencies) {
