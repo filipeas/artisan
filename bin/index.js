@@ -22,11 +22,11 @@ const options = yargs
     .argv;
 
 if (yargs.argv.init) {
-    init.initStructure(develop);
+    init.initStructure(true, develop);
 }
 
 if (yargs.argv.create && yargs.argv.create[0] === "entity") {
     let entity = yargs.argv.create[1].toLowerCase();
     entity = entity[0].toUpperCase() + entity.substr(1);
-    create.createStructure(develop, entity);
+    create.createStructure(develop, false, entity);
 }

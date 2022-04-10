@@ -8,7 +8,7 @@ const createTypes = require("./init/createTypes.js");
 const createInfra = require("./init/createInfra.js");
 const createDependencies = require("./init/createDependencies.js");
 
-function initStructure(develop) {
+function initStructure(createUser, develop) {
     console.log("Iniciando criação da estrutura.");
 
     // definindo caminhos
@@ -95,10 +95,11 @@ function initStructure(develop) {
         destinationInfraHttpMiddlewares,
         destinationInfraHttpRoutes,
         destinationInfraHttpValidation,
-        destinationInfraTypeOrm
+        destinationInfraTypeOrm,
+        destinationInfraTypeOrmMigrations
     );
 
     // cria entidade user
     const entity = "User";
-    create.createStructure(develop, entity);
+    create.createStructure(develop, createUser, entity);
 }
