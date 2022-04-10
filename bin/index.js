@@ -5,7 +5,7 @@ const create = require("./create.js");
 const init = require("./init.js");
 
 // variavel de controle para testes
-const develop = true;
+const develop = false;
 
 console.log("Bem-vindo ao artisan! Utilize o comando [ npx artisan --help ] para mais informações.");
 

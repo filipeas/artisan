@@ -114,7 +114,7 @@ function createFile(
     fs.appendFile(
         path.join(destinationInfraHttpMiddlewares, "ensureAuthenticated.ts"),
         `
-        import { TypeOrmUserRepository } from '@domain/users/infra/typeorm/repositories/TypeOrmUserRepository';
+        import { TypeOrmUserRepository } from '@domain/User/infra/typeorm/repositories/TypeOrmUserRepository';
         import { BadRequestError } from '@infra/http/errors/BadRequestError';
         import { UnauthozitedError } from '@infra/http/errors/UnauthorizedError';
         import { NextFunction, Request, Response } from 'express';
@@ -262,7 +262,7 @@ function createFile(
         `
         import { Router } from 'express';
 
-        import { AuthUserController } from '@domain/users/useCases/auth-user/AuthUserController';
+        import { AuthUserController } from '@domain/User/useCases/auth-user/AuthUserController';
 
         const authenticateRouter = Router();
 

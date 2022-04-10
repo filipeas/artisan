@@ -12,7 +12,7 @@ function copy(destinationRaiz) {
         }
 
         // parse JSON object
-        const package = JSON.parse(data.toString());
+        let JSONpackage = JSON.parse(data.toString());
 
         // adicionar scripts
         const scripts = {
@@ -20,8 +20,8 @@ function copy(destinationRaiz) {
             "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
             "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
         }
-        Object.assign(package, { "scripts": scripts });
-        fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+        Object.assign(JSONpackage, { "scripts": scripts });
+        fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
             if (err) {
                 throw err;
             }
@@ -29,7 +29,7 @@ function copy(destinationRaiz) {
         });
 
         // verifica se chave dependencies existe
-        if (package.dependencies) {
+        if (JSONpackage.dependencies) {
             // se chave dependencies já existe, só atualiza pacotes do artisan no arquivo package.json
             const dependencies = {
                 "@types/uuid": "^8.3.4",
@@ -49,8 +49,8 @@ function copy(destinationRaiz) {
             }
 
             // const dataDependencies = JSON.stringify(dependencies);
-            Object.assign(package.dependencies, dependencies)
-            fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+            Object.assign(JSONpackage.dependencies, dependencies)
+            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -75,9 +75,8 @@ function copy(destinationRaiz) {
                 "yup": "^0.32.11"
             }
 
-            // const dataDependencies = JSON.stringify(devDependencies);
-            Object.assign(package, dependencies);
-            fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+            const data = { ...JSONpackage, "dependencies": dependencies };
+            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -86,7 +85,7 @@ function copy(destinationRaiz) {
         }
 
         // verifica se chave devDependencies existe
-        if (package.devDependencies) {
+        if (JSONpackage.devDependencies) {
             // se chave devDependencies já existe, só atualiza pacotes do artisan no arquivo package.json
             const devDependencies = {
                 "@types/bcrypt": "^5.0.0",
@@ -109,8 +108,8 @@ function copy(destinationRaiz) {
             }
 
             // const dataDependencies = JSON.stringify(dependencies);
-            Object.assign(package.devDependencies, devDependencies)
-            fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+            Object.assign(JSONpackage.devDependencies, devDependencies)
+            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -138,11 +137,8 @@ function copy(destinationRaiz) {
                 "typescript": "^4.6.3"
             }
 
-            // const dataDependencies = JSON.stringify(devDependencies);
-            Object.assign(package, {
-                "devDependencies": devDependencies
-            });
-            fs.writeFile(packageFileName, JSON.stringify(package), (err) => {
+            const data = { ...JSONpackage, "devDependencies": devDependencies };
+            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
                 if (err) {
                     throw err;
                 }
