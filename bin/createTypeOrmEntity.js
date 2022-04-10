@@ -6,7 +6,7 @@ const path = require("path");
 function createFile(dirTypeOrmEntities, entity) {
     fs.appendFile(
         path.join(dirTypeOrmEntities, entity) + ".ts",
-        `import { ${entity} } from '@domain/${entity}/infra/typeorm/entities/${entity}';
+        `
         import {
             Column,
             CreateDateColumn,
@@ -15,7 +15,7 @@ function createFile(dirTypeOrmEntities, entity) {
             UpdateDateColumn,
         } from 'typeorm';
         
-        @Entity('${entity}')
+        @Entity('${entity.toLowerCase()}')
         export class ${entity} {
             @PrimaryGeneratedColumn('increment')
             id!: string;

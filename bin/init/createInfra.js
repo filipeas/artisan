@@ -364,7 +364,7 @@ function createFile(
         app.use(handleException);
 
         app.listen(process.env.APP_PORT, () => {
-            console.log(\`Server on ${process.env.APP_URL}\`);
+            console.log(\`Server online\`);
         });
     `, function (err) {
         if (err) throw err;
