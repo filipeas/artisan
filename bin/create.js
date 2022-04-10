@@ -35,6 +35,7 @@ function createStructure(develop, entity) {
     const dirUseCases = path.join(__dirname, rollPath, "src", "domain", entity, "useCases");
     const dirUseCasesCreate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "create-" + entity);
     const dirUseCasesUpdate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "update-" + entity);
+    const dirUseCasesAuthUser = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "auth-user-" + entity);
     const dirUseCasesDelete = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "delete-" + entity);
 
     // verifica se diretorio da entidade ja foi criada
@@ -58,6 +59,7 @@ function createStructure(develop, entity) {
     if (!fs.existsSync(dirUseCases)) fs.mkdirSync(dirUseCases);
     if (!fs.existsSync(dirUseCasesCreate)) fs.mkdirSync(dirUseCasesCreate);
     if (!fs.existsSync(dirUseCasesUpdate)) fs.mkdirSync(dirUseCasesUpdate);
+    if (!fs.existsSync(dirUseCasesAuthUser)) fs.mkdirSync(dirUseCasesAuthUser);
     if (!fs.existsSync(dirUseCasesDelete)) fs.mkdirSync(dirUseCasesDelete);
 
     // criando arquivos para o diretorio dtos
@@ -79,5 +81,5 @@ function createStructure(develop, entity) {
     createResponse.createFile(dirResponse, entity);
 
     // criando arquivos para o diretorio useCases
-    createUseCases.createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, entity);
+    createUseCases.createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuthUser, entity);
 }

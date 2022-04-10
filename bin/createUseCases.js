@@ -3,7 +3,10 @@ module.exports = { createFile: createFile };
 const fs = require("fs");
 const path = require("path");
 
-function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, entity) {
+function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, dirUseCasesAuth, entity) {
+    /**
+     * create
+     */
     fs.appendFile(
         path.join(dirUseCasesCreate, "Create" + entity) + "Controller.ts",
         `import { Request, Response } from 'express';
@@ -62,6 +65,9 @@ function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, ent
         console.log("Arquivo useCases create UseCase criado com sucesso.");
     });
 
+    /**
+     * delete
+     */
     fs.appendFile(
         path.join(dirUseCasesDelete, "Delete" + entity) + "Controller.ts",
         `import { Request, Response } from 'express';
@@ -119,6 +125,9 @@ function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, ent
         console.log("Arquivo useCases Delete UseCase criado com sucesso.");
     });
 
+    /**
+     * update
+     */
     fs.appendFile(
         path.join(dirUseCasesUpdate, "Update" + entity) + "Controller.ts",
         `import { Request, Response } from 'express';
@@ -170,6 +179,68 @@ function createFile(dirUseCasesCreate, dirUseCasesDelete, dirUseCasesUpdate, ent
             ) { }
         
             async run({id}: IRequestUpdate${entity}): Promise<IResponseUpdate${entity}> {
+                //
+            }
+        }
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo useCases create UseCase criado com sucesso.");
+    });
+
+    /**
+     * auth
+     */
+     fs.appendFile(
+        path.join(dirUseCasesAuth, "AuthUser" + entity) + "Controller.ts",
+        `import { Request, Response } from 'express';
+        import { container } from 'tsyringe';
+        import { AuthUser${entity}UseCase } from './AuthUser${entity}UseCase';
+        
+        export class AuthUser${entity}Controller {
+            async handle(request: Request, response: Response): Promise<Response> {
+                // const {  } = request.body;
+                // const { id } = request.params;
+        
+                const AuthUser${entity} = container.resolve(AuthUser${entity}UseCase);
+        
+                const ${entity.toLowerCase()} = await AuthUser${entity}.run({id});
+        
+                return response.status(201).json({ ${entity.toLowerCase()} });
+            }
+        }   
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo useCases AuthUser controller criado com sucesso.");
+    });
+
+    fs.appendFile(
+        path.join(dirUseCasesAuth, "AuthUser" + entity) + "UseCase.spec.ts",
+        `describe('Teste de autenticar ${entity}', () => {
+            it('autenticar ${entity}', async () => {});
+            it('autenticar ${entity} sem parametros', async () => {});
+        });
+        `, function (err) {
+        if (err) throw err;
+        console.log("Arquivo useCases AuthUser test criado com sucesso.");
+    });
+
+    fs.appendFile(
+        path.join(dirUseCasesAuth, "AuthUser" + entity) + "UseCase.ts",
+        `import { inject, injectable } from 'tsyringe';
+
+        import { I${entity}Repository } from '@domain/${entity}/repositories/I${entity}Repository';
+        
+        import { IRequestAuthUser${entity} } from '@domain/${entity}/request/IRequestAuthUser${entity}';
+        import { IResponseAuthUser${entity} } from '@domain/${entity}/response/IResponseAuthUser${entity}';
+        
+        @injectable()
+        export class AuthUser${entity}UseCase {
+            constructor(
+                @inject('${entity}Repository')
+                private ${entity}Repository: I${entity}Repository,
+            ) { }
+        
+            async run({id}: IRequestAuthUser${entity}): Promise<IResponseAuthUser${entity}> {
                 //
             }
         }
