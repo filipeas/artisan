@@ -33,10 +33,10 @@ function createStructure(develop, entity) {
     const dirRequest = path.join(__dirname, rollPath, "src", "domain", entity, "request");
     const dirResponse = path.join(__dirname, rollPath, "src", "domain", entity, "response");
     const dirUseCases = path.join(__dirname, rollPath, "src", "domain", entity, "useCases");
-    const dirUseCasesCreate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "create-" + entity);
-    const dirUseCasesUpdate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "update-" + entity);
-    const dirUseCasesAuthUser = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "auth-user-" + entity);
-    const dirUseCasesDelete = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "delete-" + entity);
+    const dirUseCasesCreate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "create-" + entity.toLowerCase());
+    const dirUseCasesUpdate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "update-" + entity.toLowerCase());
+    const dirUseCasesAuthUser = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "auth-" + entity.toLowerCase());
+    const dirUseCasesDelete = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "delete-" + entity.toLowerCase());
 
     // verifica se diretorio da entidade ja foi criada
     if (fs.existsSync(dirEntity)) {
@@ -74,7 +74,7 @@ function createStructure(develop, entity) {
     // criando arquivos para o diretorio repositories
     createRepositories.createFile(dirRepositories, entity);
 
-    // criando arquivos para o diretorio request 
+    // criando arquivos para o diretorio request
     createRequest.createFile(dirRequest, entity);
 
     // criando arquivos para o diretorio Response
