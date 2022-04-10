@@ -1,6 +1,6 @@
 ## Artisan
 * Structuring system for an ExpressJs project.
-* Version [Production] release 0.2.8
+* Version [Production] release 0.2.10
 * [artisan - npm package](https://www.npmjs.com/package/@filipeas/artisan)
 
 ## Dependencies

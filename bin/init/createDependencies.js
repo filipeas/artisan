@@ -13,22 +13,24 @@ function copy(destinationRaiz) {
 
         // parse JSON object
         let JSONpackage = JSON.parse(data.toString());
+        let JSONdata = JSONpackage;
 
         // verifica se chave scripts existe
-        if (JSONpackage.scripts) {
+        if (JSONdata.scripts) {
             // adicionar scripts
             const scripts = {
                 "dev:server": "tsnd -r tsconfig-paths/register --inspect --ignore-watch node_modules --transpile-only --respawn src/infra/http/server.ts",
                 "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli",
                 "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
             }
-            Object.assign(JSONpackage.scripts, scripts);
-            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("scripts salvo com sucesso no arquivo package.json.");
-            });
+            Object.assign(JSONdata.scripts, scripts);
+            JSONdata = JSONdata;
+            // fs.writeFile(packageFileName, JSON.stringify(JSONdata), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("scripts salvo com sucesso no arquivo package.json.");
+            // });
         } else {
             // criar chave scripts e inserir no package.json
             const scripts = {
@@ -37,17 +39,17 @@ function copy(destinationRaiz) {
                 "seed:platform": "tsnd src/infra/typeorm/seeds/video-platforms.ts",
             }
 
-            const data = { ...JSONpackage, "scripts": scripts };
-            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("scripts salvo com sucesso no arquivo package.json.");
-            });
+            JSONdata = { ...JSONdata, "scripts": scripts };
+            // fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("scripts salvo com sucesso no arquivo package.json.");
+            // });
         }
 
         // verifica se chave dependencies existe
-        if (JSONpackage.dependencies) {
+        if (JSONdata.dependencies) {
             // se chave dependencies já existe, só atualiza pacotes do artisan no arquivo package.json
             const dependencies = {
                 "@types/uuid": "^8.3.4",
@@ -67,13 +69,14 @@ function copy(destinationRaiz) {
             }
 
             // const dataDependencies = JSON.stringify(dependencies);
-            Object.assign(JSONpackage.dependencies, dependencies)
-            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("dependencies salvas com sucesso no arquivo package.json.");
-            });
+            Object.assign(JSONdata.dependencies, dependencies)
+            JSONdata = JSONdata;
+            // fs.writeFile(packageFileName, JSON.stringify(JSONdata), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("dependencies salvas com sucesso no arquivo package.json.");
+            // });
         } else {
             // criar chave dependencies e inserir no package.json
             const dependencies = {
@@ -93,17 +96,17 @@ function copy(destinationRaiz) {
                 "yup": "^0.32.11"
             }
 
-            const data = { ...JSONpackage, "dependencies": dependencies };
-            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("dependencies salvas com sucesso no arquivo package.json.");
-            });
+            JSONdata = { ...JSONdata, "dependencies": dependencies };
+            // fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("dependencies salvas com sucesso no arquivo package.json.");
+            // });
         }
 
         // verifica se chave devDependencies existe
-        if (JSONpackage.devDependencies) {
+        if (JSONdata.devDependencies) {
             // se chave devDependencies já existe, só atualiza pacotes do artisan no arquivo package.json
             const devDependencies = {
                 "@types/bcrypt": "^5.0.0",
@@ -126,13 +129,14 @@ function copy(destinationRaiz) {
             }
 
             // const dataDependencies = JSON.stringify(dependencies);
-            Object.assign(JSONpackage.devDependencies, devDependencies)
-            fs.writeFile(packageFileName, JSON.stringify(JSONpackage), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("devDependencies salvas com sucesso no arquivo package.json.");
-            });
+            Object.assign(JSONdata.devDependencies, devDependencies)
+            JSONdata = JSONdata;
+            // fs.writeFile(packageFileName, JSON.stringify(JSONdata), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("devDependencies salvas com sucesso no arquivo package.json.");
+            // });
         } else {
             // criar chave devDependencies e inserir no package.json
             const devDependencies = {
@@ -155,13 +159,21 @@ function copy(destinationRaiz) {
                 "typescript": "^4.6.3"
             }
 
-            const data = { ...JSONpackage, "devDependencies": devDependencies };
-            fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("devDependencies salvas com sucesso no arquivo package.json.");
-            });
+            JSONdata = { ...JSONdata, "devDependencies": devDependencies };
+            // fs.writeFile(packageFileName, JSON.stringify(data), (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log("devDependencies salvas com sucesso no arquivo package.json.");
+            // });
         }
+
+        // console.log(JSONdata)
+        fs.writeFile(packageFileName, JSON.stringify(JSONdata), (err) => {
+            if (err) {
+                throw err;
+            }
+            console.log("dependencias e scripts salvo com sucesso no arquivo package.json.");
+        });
     });
 }
