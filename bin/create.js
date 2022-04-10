@@ -10,25 +10,32 @@ const createResponse = require("./createResponse.js");
 const createUseCases = require("./createUseCases.js");
 const createRepositories = require("./createRepositories.js");
 
-function createStructure(entity) {
+function createStructure(develop, entity) {
     console.log("criando estrutura");
 
+    // definindo caminhos
+    let rollPath;
+    if (develop)
+        rollPath = path.join("..");
+    else
+        rollPath = path.join("..", "..", "..", "..");
+
     // caminhos
-    const destination = path.join(__dirname, "..", "..", "..", "..", "src");
-    const dirDomain = path.join(__dirname, "..", "..", "..", "..", "src", "domain");
-    const dirEntity = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity);
-    const dirDtos = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "dtos");
-    const dirInfra = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "infra");
-    const dirTypeOrm = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "infra", "typeorm");
-    const dirTypeOrmEntities = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "infra", "typeorm", "entities");
-    const dirTypeOrmRepositories = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "infra", "typeorm", "repositories");
-    const dirRepositories = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "repositories");
-    const dirRequest = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "request");
-    const dirResponse = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "response");
-    const dirUseCases = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "useCases");
-    const dirUseCasesCreate = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "useCases", "create-" + entity);
-    const dirUseCasesUpdate = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "useCases", "update-" + entity);
-    const dirUseCasesDelete = path.join(__dirname, "..", "..", "..", "..", "src", "domain", entity, "useCases", "delete-" + entity);
+    const destination = path.join(__dirname, rollPath, "src");
+    const dirDomain = path.join(__dirname, rollPath, "src", "domain");
+    const dirEntity = path.join(__dirname, rollPath, "src", "domain", entity);
+    const dirDtos = path.join(__dirname, rollPath, "src", "domain", entity, "dtos");
+    const dirInfra = path.join(__dirname, rollPath, "src", "domain", entity, "infra");
+    const dirTypeOrm = path.join(__dirname, rollPath, "src", "domain", entity, "infra", "typeorm");
+    const dirTypeOrmEntities = path.join(__dirname, rollPath, "src", "domain", entity, "infra", "typeorm", "entities");
+    const dirTypeOrmRepositories = path.join(__dirname, rollPath, "src", "domain", entity, "infra", "typeorm", "repositories");
+    const dirRepositories = path.join(__dirname, rollPath, "src", "domain", entity, "repositories");
+    const dirRequest = path.join(__dirname, rollPath, "src", "domain", entity, "request");
+    const dirResponse = path.join(__dirname, rollPath, "src", "domain", entity, "response");
+    const dirUseCases = path.join(__dirname, rollPath, "src", "domain", entity, "useCases");
+    const dirUseCasesCreate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "create-" + entity);
+    const dirUseCasesUpdate = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "update-" + entity);
+    const dirUseCasesDelete = path.join(__dirname, rollPath, "src", "domain", entity, "useCases", "delete-" + entity);
 
     // verifica se diretorio da entidade ja foi criada
     if (fs.existsSync(dirEntity)) {

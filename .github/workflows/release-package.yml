@@ -1,9 +1,6 @@
 name: Pacote Artisan - github package
 
 on:
-  push:
-    branches:
-      - master 
   release:
     types: [created]
 
