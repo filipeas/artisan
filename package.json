@@ -1,6 +1,6 @@
 {
   "name": "@filipeas/artisan",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "CLI para criar estrutura de projeto",
   "main": "index.js",
   "scripts": {
