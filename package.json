@@ -1,6 +1,6 @@
 {
   "name": "@filipeas/artisan",
-  "version": "0.2.11",
+  "version": "0.3.0",
   "description": "CLI para criar estrutura de projeto",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "cli"
   ],
   "bin": {
-    "artisan": "./bin/index.js"
+    "artisan": "./bin/v2/index.js"
   },
   "author": "Filipe A.S",
   "license": "MIT",

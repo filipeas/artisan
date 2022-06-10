@@ -1,3 +1,40 @@
+<h1 align="center">Artisan</h1>
+<h3 align="center">Pacote para estruturação de projetos com ExpressJs</h3>
+<p align="center">
+        <a href="https://github.com/filipeas/artisan/releases/tag/0.2.11" alt="Version">
+        <img src="https://img.shields.io/badge/version-0.2,11-green" /></a>
+</p>
+
+## Dependências
+
+1. fs-extra
+2. yargs
+
+## Contribuintes
+
+1. [Filipe A.S](https://github.com/filipeas)
+
+## Modo de instalação
+
+Abaixo é possível visualizar as formas de instalação.
+
+### Instalar com npm (pacote em produção)
+
+Para instalar no seu projeto, utilize o comando ``` npm i @filipeas/artisan ```.
+
+Para remover basta excluir a linha de importação no package.json.
+
+PS: Para instalar o pacote voçê deve ter o arquivo package.json no seu projeto.
+
+### Instalar localmente para implementações no próprio pacote
+
+Utilize o comando ``` sudo npm link ``` para criar um link do pacote no diretório de pacotes npm da máquina.
+
+Caso queira remover o link, execute ``` sudo npm rm --global artisan ``` para remover o link do pacote. Verifique se o pacote ainda está instalado com o comando ``` npm ls --global artisan ```. Caso não seja removido, vá até a pasta do pacote onde está o link e exclua manualmente a pasta linkada.
+
+## Estruturação do pacote
+
+<!-- 
 ## Artisan
 * Structuring system for an ExpressJs project.
 * Version [Production] release 0.2.11
@@ -107,4 +144,4 @@
         "uuid": "^8.3.2", 
         "yup": "^0.32.11" 
     } 
-```
+``` -->
