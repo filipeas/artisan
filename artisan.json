@@ -1,0 +1,30 @@
+{
+	"directories": {
+		"application": [
+			"providers",
+			"repositories",
+			"usecases",
+			"views"
+		],
+		"core": [
+			"config",
+			"domain",
+			"dtos",
+			"logic"
+		],
+		"domain": [],
+		"errors": [],
+		"infra": [
+			"adapters",
+			"config",
+			"container",
+			"database",
+			"http",
+			"utils"
+		],
+		"tests": [
+			"adapters",
+			"repositories"
+		]
+	}
+}
