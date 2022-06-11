@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require("yargs");
+const path = require("path");
 const config = require("../../artisan.json");
 const init = require("./init/index.js");
 
@@ -18,45 +19,57 @@ const options = yargs
     .help(true)
     .argv;
 
-// if call init
-if(yargs.argv.init){
-    // create all initial structure.
-    console.log('Create all initial structure.');
-    init.main(config.directories)
-    return;
-}
+// control location of create directory and files.
+const production = false;
+let pathDir = "";
+if (production)
+    pathDir = path.join("..");
+else
+    pathDir = path.join("..", "..", "..", "..");
 
-// if call create
-if(yargs.argv.create && yargs.argv.create[0]){
-    const entity = yargs.argv.create[0];
+main(pathDir);
 
-    if(yargs.argv.a){
-        // call flag -a (application)
-        console.log('Create entity in application directory.');
+function main(pathDir) {
+    // if call init
+    if (yargs.argv.init) {
+        // create all initial structure.
+        console.log('Create all initial structure.');
+        init.main(config.directories, pathDir);
+        return;
     }
 
-     if(yargs.argv.c){
-        // call flag -c (core)
-        console.log('Create entity in core directory.');
-    }
+    // if call create
+    if (yargs.argv.create && yargs.argv.create[0]) {
+        const entity = yargs.argv.create[0];
 
-     if(yargs.argv.d){
-        // call flag -d (domain)
-        console.log('Create entity in domain directory.');
-    }
+        if (yargs.argv.a) {
+            // call flag -a (application)
+            console.log('Create entity in application directory.');
+        }
 
-     if(yargs.argv.e){
-        // call flag -e (errors)
-        console.log('Create entity in errors directory.');
-    }
+        if (yargs.argv.c) {
+            // call flag -c (core)
+            console.log('Create entity in core directory.');
+        }
 
-     if(yargs.argv.i){
-        // call flag -i (infra)
-        console.log('Create entity in infra directory.');
-    }
+        if (yargs.argv.d) {
+            // call flag -d (domain)
+            console.log('Create entity in domain directory.');
+        }
 
-     if(yargs.argv.t){
-        // call flag -t (tests)
-        console.log('Create entity in tests directory.');
+        if (yargs.argv.e) {
+            // call flag -e (errors)
+            console.log('Create entity in errors directory.');
+        }
+
+        if (yargs.argv.i) {
+            // call flag -i (infra)
+            console.log('Create entity in infra directory.');
+        }
+
+        if (yargs.argv.t) {
+            // call flag -t (tests)
+            console.log('Create entity in tests directory.');
+        }
     }
 }
