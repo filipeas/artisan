@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name = "entity", dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, name) + ".ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + ".ts",
+            file,
             `
             import { v4 as uuidV4 } from 'uuid';
 

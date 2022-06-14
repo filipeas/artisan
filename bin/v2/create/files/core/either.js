@@ -4,14 +4,15 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name = "either", dir) {
-    if (fs.existsSync(dir)) {
-        console.log(name + ".ts file has been created.");
-    } else {
-        console.log('creating ' + name + ' file.');
+  const file = path.join(dir, name) + ".ts";
+  if (fs.existsSync(file)) {
+    console.log(name + ".ts file has been created.");
+  } else {
+    console.log('creating ' + name + ' file.');
 
-        fs.appendFile(
-            path.join(dir, name) + ".ts",
-            `
+    fs.appendFile(
+      file,
+      `
             export class Left<L, A> {
                 readonly value: L;
               
@@ -54,8 +55,8 @@ function create(name = "either", dir) {
                 return new Right<L, A>(a);
               };                          
             `, function (err) {
-            if (err) throw err;
-            console.log(name + ".ts has created successfuly.");
-        });
-    }
+      if (err) throw err;
+      console.log(name + ".ts has created successfuly.");
+    });
+  }
 }

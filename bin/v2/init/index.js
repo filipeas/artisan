@@ -6,9 +6,15 @@ const directory = require("../create/directories/directoryOnSrc.js");
 const dto = require("../create/files/domain/dto.js");
 const entity = require("../create/files/domain/entity.js");
 const mapper = require("../create/files/domain/mapper.js");
-const date = require("../create/files/application/date.js")
-const jwt = require("../create/files/application/jwt.js")
-const mail = require("../create/files/application/mail.js")
+const date = require("../create/files/application/date.js");
+const jwt = require("../create/files/application/jwt.js");
+const mail = require("../create/files/application/mail.js");
+const either = require("../create/files/core/either.js");
+const entityCore = require("../create/files/core/entity.js");
+const maybe = require("../create/files/core/maybe.js");
+const parse_types = require("../create/files/core/parse-types.js");
+const status = require("../create/files/core/status.js");
+const validate_account = require("../create/files/core/validate-account.js");
 
 function main(directories, pathDir) {
     // creating src directory
@@ -46,7 +52,6 @@ function application(){
     directory.main("application/views");
 
     // creating files for application
-    console.log(dirProvider)
     date.create("date", dirProvider);
     jwt.create("jwt", dirProvider);
     mail.create("mail", dirProvider);
@@ -54,10 +59,18 @@ function application(){
 
 function core(){
     // creating directories for core
-    directory.main("core/config");
-    directory.main("core/domain");
-    directory.main("core/dtos");
-    directory.main("core/logic");
+    const dirConfig = directory.main("core/config");
+    const dirDomain = directory.main("core/domain");
+    const dirDtos = directory.main("core/dtos");
+    const dirLogic = directory.main("core/logic");
+
+    // creating files for core
+    validate_account.create("validate-account", dirConfig);
+    entityCore.create("entity", dirDomain);
+    parse_types.create("parse-types", dirDtos);
+    status.create("status", dirDtos);
+    either.create("either", dirLogic);
+    maybe.create("maybe", dirLogic);
 }
 
 function domain(){

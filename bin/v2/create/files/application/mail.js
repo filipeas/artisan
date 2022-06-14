@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name = "mail", dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, name) + ".provider.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".provider.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + ".provider.ts",
+            file,
             `
             type IMailData = {
                 to: string;
