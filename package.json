@@ -1,7 +1,7 @@
 {
   "name": "@filipeas/artisan",
-  "version": "0.2.11",
-  "description": "CLI para criar estrutura de projeto",
+  "version": "0.3.0",
+  "description": "CLI for project structuring using ExpressJs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "cli"
   ],
   "bin": {
-    "artisan": "./bin/index.js"
+    "artisan": "./bin/v2/index.js"
   },
   "author": "Filipe A.S",
   "license": "MIT",

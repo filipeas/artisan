@@ -1,0 +1,10 @@
+{
+	"directories": [
+		"application",
+		"core",
+		"domain",
+		"errors",
+		"infra",
+		"tests"
+	]
+}
