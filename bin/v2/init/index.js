@@ -20,6 +20,12 @@ const appErrors = require("../create/files/errors/app.js");
 const bad_requestErrors = require("../create/files/errors/bad-request.js");
 const not_foundErrors = require("../create/files/errors/not-found.js");
 const unauthorizedErrors = require("../create/files/errors/unauthorized.js");
+const datefns = require("../create/files/infra/datefns-date.adapter.js");
+const index = require("../create/files/infra/index.js");
+const jsonwebtoken = require("../create/files/infra/jsonwebtoken-jwt.adapter.js");
+const jwtInfra = require("../create/files/infra/jwt.config.js");
+const providers = require("../create/files/infra/providers.js");
+const repositories = require("../create/files/infra/repositories.js");
 
 function main(directories, pathDir) {
     // creating src directory
@@ -99,15 +105,23 @@ function errors(errorDir){
 
 function infra(){
     // creating directories for infra
-    directory.main("infra/adapters");
-    directory.main("infra/config");
-    directory.main("infra/container");
+    const adaptersDir = directory.main("infra/adapters");
+    const configDir = directory.main("infra/config");
+    const containerDir = directory.main("infra/container");
     directory.main("infra/database");
     directory.main("infra/http");
     directory.main("infra/http/controllers");
     directory.main("infra/http/middlewares");
     directory.main("infra/http/routes");
     directory.main("infra/utils");
+
+    // creating initial files
+    datefns.create("datefns-date", adaptersDir);
+    jsonwebtoken.create("jsonwebtoken-jwt", adaptersDir);
+    jwt.create("jwt", configDir);
+    index.create("index", containerDir);
+    providers.create("providers", containerDir);
+    repositories.create("repositories", containerDir);
 }
 
 function tests(){
