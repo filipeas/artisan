@@ -3,14 +3,15 @@ module.exports = { create: create }
 const fs = require("fs");
 const path = require("path");
 
-function create(name = "validate-account", dir) {
-    if (fs.existsSync(dir)) {
+function create(name = "app", dir) {
+    const file = path.join(dir, name) + ".error.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".error.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + ".error.ts",
+            file,
             `
             export class AppError {
                 public readonly message!: string;

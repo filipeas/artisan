@@ -1,5 +1,6 @@
 module.exports = { main: main }
 
+const path = require("path");
 const src = require("../create/directories/src.js");
 const v2 = require("../create/directories/directories.js");
 const directory = require("../create/directories/directoryOnSrc.js");
@@ -15,6 +16,10 @@ const maybe = require("../create/files/core/maybe.js");
 const parse_types = require("../create/files/core/parse-types.js");
 const status = require("../create/files/core/status.js");
 const validate_account = require("../create/files/core/validate-account.js");
+const appErrors = require("../create/files/errors/app.js");
+const bad_requestErrors = require("../create/files/errors/bad-request.js");
+const not_foundErrors = require("../create/files/errors/not-found.js");
+const unauthorizedErrors = require("../create/files/errors/unauthorized.js");
 
 function main(directories, pathDir) {
     // creating src directory
@@ -33,6 +38,7 @@ function main(directories, pathDir) {
     domain();
 
     // creating initial files in errors
+    errors(path.join(__dirname, pathDir, "src", "errors"));
 
     // creating initial files in infra
     infra();
@@ -81,6 +87,14 @@ function domain(){
     dto.create("user", dir);
     entity.create("user", dir);
     mapper.create("user", dir);
+}
+
+function errors(errorDir){
+    // creating initial files
+    appErrors.create("app", errorDir);
+    bad_requestErrors.create("bad-request", errorDir);
+    not_foundErrors.create("not-found", errorDir);
+    unauthorizedErrors.create("unauthorized", errorDir);
 }
 
 function infra(){
