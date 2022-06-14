@@ -6,6 +6,9 @@ const directory = require("../create/directories/directoryOnSrc.js");
 const dto = require("../create/files/domain/dto.js");
 const entity = require("../create/files/domain/entity.js");
 const mapper = require("../create/files/domain/mapper.js");
+const date = require("../create/files/application/date.js")
+const jwt = require("../create/files/application/jwt.js")
+const mail = require("../create/files/application/mail.js")
 
 function main(directories, pathDir) {
     // creating src directory
@@ -36,13 +39,21 @@ function main(directories, pathDir) {
  * Functions for creating directories and initial files.
  */
 function application(){
-    directory.main("application/providers");
+    // creating directories for application
+    const dirProvider = directory.main("application/providers");
     directory.main("application/repositories");
     directory.main("application/usecases");
     directory.main("application/views");
+
+    // creating files for application
+    console.log(dirProvider)
+    date.create("date", dirProvider);
+    jwt.create("jwt", dirProvider);
+    mail.create("mail", dirProvider);
 }
 
 function core(){
+    // creating directories for core
     directory.main("core/config");
     directory.main("core/domain");
     directory.main("core/dtos");
@@ -50,23 +61,30 @@ function core(){
 }
 
 function domain(){
+    // creating directories for domain
     dir = directory.main("domain/user");
 
-    // creating files
+    // creating initial files
     dto.create("user", dir);
     entity.create("user", dir);
     mapper.create("user", dir);
 }
 
 function infra(){
+    // creating directories for infra
     directory.main("infra/adapters");
     directory.main("infra/config");
     directory.main("infra/container");
+    directory.main("infra/database");
     directory.main("infra/http");
+    directory.main("infra/http/controllers");
+    directory.main("infra/http/middlewares");
+    directory.main("infra/http/routes");
     directory.main("infra/utils");
 }
 
 function tests(){
+    // creating directories for tests
     directory.main("tests/adapters");
     directory.main("tests/repositories");
 }
