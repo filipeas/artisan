@@ -26,6 +26,12 @@ const jsonwebtoken = require("../create/files/infra/jsonwebtoken-jwt.adapter.js"
 const jwtInfra = require("../create/files/infra/jwt.config.js");
 const providers = require("../create/files/infra/providers.js");
 const repositories = require("../create/files/infra/repositories.js");
+const controller = require("../create/files/infra/controller.js");
+const ensure_authenticated = require("../create/files/infra/ensure-authenticated.middleware.js");
+const exception = require("../create/files/infra/exception.middleware.js");
+const server = require("../create/files/infra/server.js");
+const indexRoute = require("../create/files/infra/indexRoute.js");
+const route = require("../create/files/infra/route.js");
 
 function main(directories, pathDir) {
     // creating src directory
@@ -109,19 +115,26 @@ function infra(){
     const configDir = directory.main("infra/config");
     const containerDir = directory.main("infra/container");
     directory.main("infra/database");
-    directory.main("infra/http");
+    const httpDir = directory.main("infra/http");
     directory.main("infra/http/controllers");
-    directory.main("infra/http/middlewares");
-    directory.main("infra/http/routes");
+    const userControllerDir = directory.main("infra/http/controllers/User");
+    const middlewareDir = directory.main("infra/http/middlewares");
+    const routeDir = directory.main("infra/http/routes");
     directory.main("infra/utils");
 
     // creating initial files
     datefns.create("datefns-date", adaptersDir);
     jsonwebtoken.create("jsonwebtoken-jwt", adaptersDir);
-    jwt.create("jwt", configDir);
+    jwtInfra.create("jwt", configDir);
     index.create("index", containerDir);
     providers.create("providers", containerDir);
     repositories.create("repositories", containerDir);
+    server.create("server", httpDir);
+    controller.create("User", userControllerDir);
+    ensure_authenticated.create("ensure-authenticated", middlewareDir);
+    exception.create("exception", middlewareDir);
+    indexRoute.create("index", routeDir);
+    route.create("User", routeDir);
 }
 
 function tests(){
