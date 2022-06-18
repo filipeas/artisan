@@ -5,6 +5,7 @@ const path = require("path");
 const config = require("../../artisan.json");
 const init = require("./init/index.js");
 const domain = require("./domain/index.js");
+const error = require("./errors/index.js");
 
 console.log("Welcome to CLI artisan!\nUse command [artisan --help] for more info.");
 
@@ -63,6 +64,8 @@ function main(pathDir) {
         if (yargs.argv.e) {
             // call flag -e (errors)
             console.log('Create entity in errors directory.');
+
+            error.main(entity);
         }
 
         if (yargs.argv.i) {
