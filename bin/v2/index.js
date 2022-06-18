@@ -7,6 +7,7 @@ const init = require("./init/index.js");
 const domain = require("./domain/index.js");
 const error = require("./errors/index.js");
 const application = require('./application/index.js');
+const controller = require('./controller/index.js');
 
 console.log("Welcome to CLI artisan!\nUse command [artisan --help] for more info.");
 
@@ -67,14 +68,14 @@ function main(pathDir) {
             application.main(entity, 'repositories');
         }
 
-        if (structure === 'views') {
-            // call: artisan --create entity views (application)
-            console.log('Create entity in application/views directory.');
-        }
+        // if (structure === 'views') {
+        //     // call: artisan --create entity views (application)
+        //     console.log('instruction not implemented');
+        // }
 
         // if (yargs.argv.c) {
         //     // call flag -c (core)
-        //     console.log('Create entity in core directory.');
+        //     console.log('instruction not implemented');
         // }
 
         if (structure === 'domain') {
@@ -91,14 +92,23 @@ function main(pathDir) {
             error.main(entity);
         }
 
-        if (yargs.argv.i) {
-            // call flag -i (infra)
-            console.log('Create entity in infra directory.');
+        if (structure === 'controllers') {
+            // call: artisan --create entity controllers (infra)
+            console.log('Create entity in controllers directory.');
+
+            controller.main(entity, 'controllers');
         }
 
-        if (yargs.argv.t) {
-            // call flag -t (tests)
-            console.log('Create entity in tests directory.');
+        if (structure === 'routes') {
+            // call: artisan --create entity routes (infra)
+            console.log('Create entity in routes directory.');
+
+            controller.main(entity, 'routes');
         }
+
+        // if (yargs.argv.t) {
+        //     // call flag -t (tests)
+        //     console.log('instruction not implemented');
+        // }
     }
 }
