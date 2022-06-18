@@ -1,38 +1,54 @@
 <h1 align="center">Artisan</h1>
-<h3 align="center">Pacote para estruturação de projetos com ExpressJs</h3>
+<h3 align="center">Package for structuring projects with NodeJs and ExpressJs</h3>
 <p align="center">
         <a href="https://github.com/filipeas/artisan/releases/tag/0.3.0" alt="Version">
         <img src="https://img.shields.io/badge/version-0.3.0-green" /></a>
 </p>
 
-## Dependências
+## Dependencies
 
 1. fs-extra
 2. yargs
 
-## Contribuintes
+## Contributors
 
 1. [Filipe A.S](https://github.com/filipeas)
 
-## Modo de instalação
+## Instalation Guide
 
-Abaixo é possível visualizar as formas de instalação.
+Below you can see the instalation methods.
 
-### Instalar com npm (pacote em produção)
+### Install with npm (package in production)
 
-Para instalar no seu projeto, utilize o comando ``` npm i @filipeas/artisan ```.
+For install in your project, use this command: ``` npm i @filipeas/artisan ```.
 
-Para remover basta excluir a linha de importação no package.json.
+To remove it, just delete the import line in package.json and run the command ``` npm install ``` in your project.
 
-PS: Para instalar o pacote voçê deve ter o arquivo package.json no seu projeto.
+PS: You need package.json file in your project.
 
-### Instalar localmente para implementações no próprio pacote
+### Install with npm link
 
-Utilize o comando ``` sudo npm link ``` para criar um link do pacote no diretório de pacotes npm da máquina.
+Use the command: ``` sudo npm link ``` inside this repository for create a link of the package in your machine.
 
-Caso queira remover o link, execute ``` sudo npm rm --global artisan ``` para remover o link do pacote. Verifique se o pacote ainda está instalado com o comando ``` npm ls --global artisan ```. Caso não seja removido, vá até a pasta do pacote onde está o link e exclua manualmente a pasta linkada.
+If you want remove this link, execute: ``` sudo npm rm --global artisan ``` for remove the link of the package in your machine. Check if the package is still installed with command: ``` npm ls --global artisan ```. If it is not removed, go to the package folder where the link is and manually delete the linked folder.
 
-## Estruturação do pacote
+## Commands
+
+Use this commands:
+
+Comand for start initial structure of pattern of artisan package:
+
+- artisan --init
+
+Commands for create some entity:
+
+- artisan --create entity usecases
+- artisan --create entity providers
+- artisan --create entity repositories
+- artisan --create entity domain
+- artisan --create entity errors
+- artisan --create entity controllers
+- artisan --create entity routes
 
 <!-- 
 ## Artisan
