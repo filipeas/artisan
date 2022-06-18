@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name, dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, name) + "mapper.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".mapper.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + "mapper.ts",
+            file,
             `
         import { I${name}Dto } from '../dtos/${name}.dto';
         import { ${name} } from '../entities/${name}';
