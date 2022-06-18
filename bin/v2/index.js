@@ -6,6 +6,7 @@ const config = require("../../artisan.json");
 const init = require("./init/index.js");
 const domain = require("./domain/index.js");
 const error = require("./errors/index.js");
+const application = require('./application/index.js');
 
 console.log("Welcome to CLI artisan!\nUse command [artisan --help] for more info.");
 
@@ -43,26 +44,48 @@ function main(pathDir) {
     // if call create
     if (yargs.argv.create && yargs.argv.create[0]) {
         const entity = yargs.argv.create[0];
+        const structure = yargs.argv.create[1];
 
-        if (yargs.argv.a) {
-            // call flag -a (application)
-            console.log('Create entity in application directory.');
+        if (structure === 'usecases') {
+            // call: artisan --create entity usecases (application)
+            console.log('Create entity in application/usecases directory.');
+
+            application.main(entity, 'usecases');
         }
 
-        if (yargs.argv.c) {
-            // call flag -c (core)
-            console.log('Create entity in core directory.');
+        if (structure === 'providers') {
+            // call: artisan --create entity providers (application)
+            console.log('Create entity in application/providers directory.');
+
+            application.main(entity, 'providers');
         }
 
-        if (yargs.argv.d) {
-            // call flag -d (domain)
+        if (structure === 'repositories') {
+            // call: artisan --create entity repositories (application)
+            console.log('Create entity in application/repositories directory.');
+
+            application.main(entity, 'repositories');
+        }
+
+        if (structure === 'views') {
+            // call: artisan --create entity views (application)
+            console.log('Create entity in application/views directory.');
+        }
+
+        // if (yargs.argv.c) {
+        //     // call flag -c (core)
+        //     console.log('Create entity in core directory.');
+        // }
+
+        if (structure === 'domain') {
+            // call: artisan --create entity domain (domain)
             console.log('Create entity in domain directory.');
 
             domain.main(entity);
         }
 
-        if (yargs.argv.e) {
-            // call flag -e (errors)
+        if (structure === 'errors') {
+            // call: artisan --create entity errors (errors)
             console.log('Create entity in errors directory.');
 
             error.main(entity);
