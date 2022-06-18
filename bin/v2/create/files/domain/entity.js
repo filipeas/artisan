@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name, dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, "I" + name) + ".ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, "I" + name) + ".ts",
+            file,
             `
         import { Entity } from '@core/domain/entity';
 

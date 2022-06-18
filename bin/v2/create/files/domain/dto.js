@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name, dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, "I" + name) + ".dto.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".dto.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, "I" + name) + ".dto.ts",
+            file,
             `
             export interface I${name}Dto {
             }

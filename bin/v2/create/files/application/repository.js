@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name, dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, name) + ".repository.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".repository.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + ".repository.ts",
+            file,
             `
             export interface I${name}Repository {
                 findAll(): Promise<${name}[]>;

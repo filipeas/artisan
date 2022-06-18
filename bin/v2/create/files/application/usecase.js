@@ -4,13 +4,14 @@ const fs = require("fs");
 const path = require("path");
 
 function create(name, dir) {
-    if (fs.existsSync(dir)) {
+    const file = path.join(dir, name) + ".usecase.ts";
+    if (fs.existsSync(file)) {
         console.log(name + ".usecase.ts file has been created.");
     } else {
         console.log('creating ' + name + ' file.');
 
         fs.appendFile(
-            path.join(dir, name) + ".usecase.ts",
+            file,
             `
             type IRequest = {
                 attribute: string;
@@ -26,7 +27,7 @@ function create(name, dir) {
                 ){}
 
                 async run({attribute}: IRequest): Promise<IResponse> {
-                    const ${name.toLowerCase()} = ${toLowerCase}.create({
+                    const ${name.toLowerCase()} = ${name}.create({
                         attribute
                     });
 

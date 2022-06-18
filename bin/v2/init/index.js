@@ -94,11 +94,14 @@ function core(){
 function domain(){
     // creating directories for domain
     dir = directory.main("domain/user");
+    dtoDir = directory.main("domain/user/dtos");
+    entityDir = directory.main("domain/user/entities");
+    mapperDir = directory.main("domain/user/mappers");
 
     // creating initial files
-    dto.create("user", dir);
-    entity.create("user", dir);
-    mapper.create("user", dir);
+    dto.create("user", dtoDir);
+    entity.create("user", entityDir);
+    mapper.create("user", mapperDir);
 }
 
 function errors(errorDir){
