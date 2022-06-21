@@ -27,7 +27,7 @@ const options = yargs
 const production = true;
 let pathDir = "";
 if (production)
-    pathDir = path.join("..", "..", "..", "..", "..", "..");
+    pathDir = path.join("..", "..", "..", "..", "..", "..", "..");
 else
     pathDir = path.join("..", "..", "..", "..");
 
