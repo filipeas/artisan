@@ -38,17 +38,17 @@ Use this commands:
 
 Comand for start initial structure of pattern of artisan package:
 
-- artisan --init
+- (yarn or npx) artisan --init
 
 Commands for create some entity:
 
-- artisan --create entity usecases
-- artisan --create entity providers
-- artisan --create entity repositories
-- artisan --create entity domain
-- artisan --create entity errors
-- artisan --create entity controllers
-- artisan --create entity routes
+- (yarn or npx) artisan --create entity usecases
+- (yarn or npx) artisan --create entity providers
+- (yarn or npx) artisan --create entity repositories
+- (yarn or npx) artisan --create entity domain
+- (yarn or npx) artisan --create entity errors
+- (yarn or npx) artisan --create entity controllers
+- (yarn or npx) artisan --create entity routes
 
 <!-- 
 ## Artisan

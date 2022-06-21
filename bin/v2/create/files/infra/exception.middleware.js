@@ -26,7 +26,7 @@ function create(name = "exception", dir) {
             ): Promise<Response> {
                 return response.status(500).json({
                     error: {
-                    message: \`Internal server error - ${error.message}\`,
+                    message: \`Internal server error - $\{error.message}\`,
                     type: 'server_error',
                     },
                 });

@@ -35,39 +35,39 @@ const route = require("../create/files/infra/route.js");
 
 function main(directories, pathDir) {
     // creating src directory
-    src.main();
+    src.main(pathDir);
 
     // creating another directories
-    v2.main(directories);
+    v2.main(directories, pathDir);
 
     // creating initial files in application
-    application();
+    application(pathDir);
 
     // creating initial files in core
-    core();
+    core(pathDir);
 
     // creating initial files in domain
-    domain();
+    domain(pathDir);
 
     // creating initial files in errors
-    errors(path.join(__dirname, pathDir, "src", "errors"));
+    errors(pathDir);
 
     // creating initial files in infra
-    infra();
+    infra(pathDir);
 
     // creating initial files in tests
-    tests();
+    tests(pathDir);
 }
 
 /**
  * Functions for creating directories and initial files.
  */
-function application(){
+function application(dir){
     // creating directories for application
-    const dirProvider = directory.main("application/providers");
-    directory.main("application/repositories");
-    directory.main("application/usecases");
-    directory.main("application/views");
+    const dirProvider = directory.main("application/providers", dir);
+    directory.main("application/repositories", dir);
+    directory.main("application/usecases", dir);
+    directory.main("application/views", dir);
 
     // creating files for application
     date.create("date", dirProvider);
@@ -75,12 +75,12 @@ function application(){
     mail.create("mail", dirProvider);
 }
 
-function core(){
+function core(dir){
     // creating directories for core
-    const dirConfig = directory.main("core/config");
-    const dirDomain = directory.main("core/domain");
-    const dirDtos = directory.main("core/dtos");
-    const dirLogic = directory.main("core/logic");
+    const dirConfig = directory.main("core/config", dir);
+    const dirDomain = directory.main("core/domain", dir);
+    const dirDtos = directory.main("core/dtos", dir);
+    const dirLogic = directory.main("core/logic", dir);
 
     // creating files for core
     validate_account.create("validate-account", dirConfig);
@@ -91,12 +91,12 @@ function core(){
     maybe.create("maybe", dirLogic);
 }
 
-function domain(){
+function domain(dir){
     // creating directories for domain
-    dir = directory.main("domain/user");
-    dtoDir = directory.main("domain/user/dtos");
-    entityDir = directory.main("domain/user/entities");
-    mapperDir = directory.main("domain/user/mappers");
+    dirUser = directory.main("domain/user", dir);
+    dtoDir = directory.main("domain/user/dtos", dir);
+    entityDir = directory.main("domain/user/entities", dir);
+    mapperDir = directory.main("domain/user/mappers", dir);
 
     // creating initial files
     dto.create("user", dtoDir);
@@ -104,7 +104,10 @@ function domain(){
     mapper.create("user", mapperDir);
 }
 
-function errors(errorDir){
+function errors(dir){
+    // creating directories for domain
+    const errorDir = directory.main("errors", dir);
+
     // creating initial files
     appErrors.create("app", errorDir);
     bad_requestErrors.create("bad-request", errorDir);
@@ -112,18 +115,18 @@ function errors(errorDir){
     unauthorizedErrors.create("unauthorized", errorDir);
 }
 
-function infra(){
+function infra(dir){
     // creating directories for infra
-    const adaptersDir = directory.main("infra/adapters");
-    const configDir = directory.main("infra/config");
-    const containerDir = directory.main("infra/container");
-    directory.main("infra/database");
-    const httpDir = directory.main("infra/http");
-    directory.main("infra/http/controllers");
-    const userControllerDir = directory.main("infra/http/controllers/User");
-    const middlewareDir = directory.main("infra/http/middlewares");
-    const routeDir = directory.main("infra/http/routes");
-    directory.main("infra/utils");
+    const adaptersDir = directory.main("infra/adapters", dir);
+    const configDir = directory.main("infra/config", dir);
+    const containerDir = directory.main("infra/container", dir);
+    directory.main("infra/database", dir);
+    const httpDir = directory.main("infra/http", dir);
+    directory.main("infra/http/controllers", dir);
+    const userControllerDir = directory.main("infra/http/controllers/User", dir);
+    const middlewareDir = directory.main("infra/http/middlewares", dir);
+    const routeDir = directory.main("infra/http/routes", dir);
+    directory.main("infra/utils", dir);
 
     // creating initial files
     datefns.create("datefns-date", adaptersDir);
@@ -140,8 +143,8 @@ function infra(){
     route.create("User", routeDir);
 }
 
-function tests(){
+function tests(dir){
     // creating directories for tests
-    directory.main("tests/adapters");
-    directory.main("tests/repositories");
+    directory.main("tests/adapters", dir);
+    directory.main("tests/repositories", dir);
 }
