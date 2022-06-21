@@ -1,6 +1,6 @@
 {
   "name": "@filipeas/artisan",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CLI for project structuring using ExpressJs",
   "main": "index.js",
   "scripts": {
