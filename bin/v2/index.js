@@ -24,10 +24,10 @@ const options = yargs
     .argv;
 
 // control location of create directory and files.
-const production = false;
+const production = true;
 let pathDir = "";
 if (production)
-    pathDir = path.join("..");
+    pathDir = path.join("..", "..", "..", "..", "..", "..");
 else
     pathDir = path.join("..", "..", "..", "..");
 

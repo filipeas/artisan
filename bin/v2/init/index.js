@@ -35,39 +35,39 @@ const route = require("../create/files/infra/route.js");
 
 function main(directories, pathDir) {
     // creating src directory
-    src.main();
+    src.main(pathDir);
 
     // creating another directories
-    v2.main(directories);
+    v2.main(directories, pathDir);
 
     // creating initial files in application
-    application();
+    application(pathDir);
 
     // creating initial files in core
-    core();
+    core(pathDir);
 
     // creating initial files in domain
-    domain();
+    domain(pathDir);
 
-    // creating initial files in errors
-    errors(path.join(__dirname, pathDir, "src", "errors"));
+    // // creating initial files in errors
+    // errors(path.join(__dirname, pathDir, "src", "errors"));
 
-    // creating initial files in infra
-    infra();
+    // // creating initial files in infra
+    // infra();
 
-    // creating initial files in tests
-    tests();
+    // // creating initial files in tests
+    // tests();
 }
 
 /**
  * Functions for creating directories and initial files.
  */
-function application(){
+function application(dir){
     // creating directories for application
-    const dirProvider = directory.main("application/providers");
-    directory.main("application/repositories");
-    directory.main("application/usecases");
-    directory.main("application/views");
+    const dirProvider = directory.main("application/providers", dir);
+    directory.main("application/repositories", dir);
+    directory.main("application/usecases", dir);
+    directory.main("application/views", dir);
 
     // creating files for application
     date.create("date", dirProvider);
@@ -75,12 +75,12 @@ function application(){
     mail.create("mail", dirProvider);
 }
 
-function core(){
+function core(dir){
     // creating directories for core
-    const dirConfig = directory.main("core/config");
-    const dirDomain = directory.main("core/domain");
-    const dirDtos = directory.main("core/dtos");
-    const dirLogic = directory.main("core/logic");
+    const dirConfig = directory.main("core/config", dir);
+    const dirDomain = directory.main("core/domain", dir);
+    const dirDtos = directory.main("core/dtos", dir);
+    const dirLogic = directory.main("core/logic", dir);
 
     // creating files for core
     validate_account.create("validate-account", dirConfig);
@@ -91,12 +91,12 @@ function core(){
     maybe.create("maybe", dirLogic);
 }
 
-function domain(){
+function domain(dir){
     // creating directories for domain
-    dir = directory.main("domain/user");
-    dtoDir = directory.main("domain/user/dtos");
-    entityDir = directory.main("domain/user/entities");
-    mapperDir = directory.main("domain/user/mappers");
+    dir = directory.main("domain/user", dir);
+    dtoDir = directory.main("domain/user/dtos", dir);
+    entityDir = directory.main("domain/user/entities", dir);
+    mapperDir = directory.main("domain/user/mappers", dir);
 
     // creating initial files
     dto.create("user", dtoDir);
