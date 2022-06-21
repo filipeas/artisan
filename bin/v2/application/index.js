@@ -5,17 +5,17 @@ const usecaseFile = require("../create/files/application/usecase.js");
 const providerFile = require("../create/files/application/provider.js");
 const repositoryFile = require("../create/files/application/repository.js");
 
-function main(entity, structure) {
+function main(entity, structure, rootDir) {
 
     // creating initial files
     if (structure === 'usecases') {
-        dir = directory.main("application/" + structure + "/" + entity);
+        dir = directory.main("application/" + structure + "/" + entity, rootDir);
         usecaseFile.create(entity, dir);
     } else if (structure === 'providers') {
-        dir = directory.main("application/" + structure);
+        dir = directory.main("application/" + structure, rootDir);
         providerFile.create(entity, dir);
     } else if (structure === 'repositories') {
-        dir = directory.main("application/" + structure + "/" + entity);
+        dir = directory.main("application/" + structure + "/" + entity, rootDir);
         repositoryFile.create(entity, dir);
     } else {
         console.log('command not found.');
