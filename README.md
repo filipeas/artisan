@@ -1,8 +1,8 @@
 <h1 align="center">Artisan</h1>
 <h3 align="center">Package for structuring projects with NodeJs and ExpressJs</h3>
 <p align="center">
-        <a href="https://github.com/filipeas/artisan/releases/tag/0.3.0" alt="Version">
-        <img src="https://img.shields.io/badge/version-0.3.0-green" /></a>
+        <a href="https://github.com/filipeas/artisan/releases/tag/0.3.1" alt="Version">
+        <img src="https://img.shields.io/badge/version-0.3.1-green" /></a>
 </p>
 
 ## Dependencies
