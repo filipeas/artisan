@@ -51,21 +51,24 @@ function main(pathDir) {
             // call: artisan --create entity usecases (application)
             console.log('Create entity in application/usecases directory.');
 
-            application.main(entity, 'usecases');
+            application.main(entity, 'usecases', pathDir);
+            return;
         }
 
         if (structure === 'providers') {
             // call: artisan --create entity providers (application)
             console.log('Create entity in application/providers directory.');
 
-            application.main(entity, 'providers');
+            application.main(entity, 'providers', pathDir);
+            return;
         }
 
         if (structure === 'repositories') {
             // call: artisan --create entity repositories (application)
             console.log('Create entity in application/repositories directory.');
 
-            application.main(entity, 'repositories');
+            application.main(entity, 'repositories', pathDir);
+            return;
         }
 
         // if (structure === 'views') {
@@ -82,28 +85,32 @@ function main(pathDir) {
             // call: artisan --create entity domain (domain)
             console.log('Create entity in domain directory.');
 
-            domain.main(entity);
+            domain.main(entity, pathDir);
+            return;
         }
 
         if (structure === 'errors') {
             // call: artisan --create entity errors (errors)
             console.log('Create entity in errors directory.');
 
-            error.main(entity);
+            error.main(entity, pathDir);
+            return;
         }
 
         if (structure === 'controllers') {
             // call: artisan --create entity controllers (infra)
             console.log('Create entity in controllers directory.');
 
-            controller.main(entity, 'controllers');
+            controller.main(entity, 'controllers', pathDir);
+            return;
         }
 
         if (structure === 'routes') {
             // call: artisan --create entity routes (infra)
             console.log('Create entity in routes directory.');
 
-            controller.main(entity, 'routes');
+            controller.main(entity, 'routes', pathDir);
+            return;
         }
 
         // if (yargs.argv.t) {
