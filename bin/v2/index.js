@@ -44,14 +44,22 @@ function main(pathDir) {
 
     // if call create
     if (yargs.argv.create && yargs.argv.create[0]) {
-        const entity = yargs.argv.create[0];
+        let entity = yargs.argv.create[0];
         const structure = yargs.argv.create[1];
 
         if (structure === 'usecases') {
-            // call: artisan --create entity usecases (application)
+            // call: artisan --create [directory or entity] usecases [entity] (application)
             console.log('Create entity in application/usecases directory.');
-
-            application.main(entity, 'usecases', pathDir);
+            console.log(yargs.argv.create[2])
+            if (yargs.argv.create[2]) {
+                console.log(1)
+                const directory = yargs.argv.create[0];
+                entity = yargs.argv.create[2];
+                application.main(entity, 'usecases', pathDir, directory);
+            } else {
+                console.log(2)
+                application.main(entity, 'usecases', pathDir);
+            }
             return;
         }
 

@@ -17,6 +17,8 @@ function main(dir) {
     tsconfig(dir);
 
     readme(dir);
+
+    env(dir);
 }
 
 function commitLint(dir) {
@@ -71,6 +73,14 @@ function readme(dir) {
     const src = path.join(__dirname, "files", "readme.config.artisan.txt");
     const dest = path.join(__dirname, "..", dir, "src", "readme.config.artisan.txt");
     fs.copyFile(src, dest, (err) => {
-        console.log("coping package.json for root files: ", err)
+        console.log("coping readme for root files: ", err)
+    });
+}
+
+function env(dir) {
+    const src = path.join(__dirname, "files", ".env.example");
+    const dest = path.join(__dirname, "..", dir, "src", ".env.example");
+    fs.copyFile(src, dest, (err) => {
+        console.log("coping .env.example for root files: ", err)
     });
 }

@@ -1,7 +1,9 @@
 name: Pacote Artisan - npm package
 on:
-  release:
-    types: [created]
+  pull_request:
+        branches:
+            - master
+        types: [closed]
 jobs:
   npm-publish:
     name: npm-publish

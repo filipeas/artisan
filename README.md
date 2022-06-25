@@ -1,8 +1,8 @@
 <h1 align="center">Artisan</h1>
 <h3 align="center">Package for structuring projects with NodeJs and ExpressJs</h3>
 <p align="center">
-        <a href="https://github.com/filipeas/artisan/releases/tag/0.3.5" alt="Version">
-        <img src="https://img.shields.io/badge/version-0.3.5-green" /></a>
+        <a href="https://github.com/filipeas/artisan/releases/tag/0.3.6" alt="Version">
+        <img src="https://img.shields.io/badge/version-0.3.6-green" /></a>
 </p>
 
 ## Dependencies
@@ -42,7 +42,7 @@ Comand for start initial structure of pattern of artisan package:
 
 Commands for create some entity:
 
-- (yarn or npx) artisan --create entity usecases
+- (yarn or npx) artisan --create [directory or entity] usecases [entity]
 - (yarn or npx) artisan --create entity providers
 - (yarn or npx) artisan --create entity repositories
 - (yarn or npx) artisan --create entity domain
