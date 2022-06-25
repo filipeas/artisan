@@ -32,8 +32,12 @@ const exception = require("../create/files/infra/exception.middleware.js");
 const server = require("../create/files/infra/server.js");
 const indexRoute = require("../create/files/infra/indexRoute.js");
 const route = require("../create/files/infra/route.js");
+const initialFiles = require("../create/files/root/root.js");
 
 function main(directories, pathDir) {
+    // add initial files in your root project directory
+    initialFiles.main(pathDir);
+
     // creating src directory
     src.main(pathDir);
 

@@ -1,0 +1,1 @@
+- Change your package.json for the package-artisan.json file.
