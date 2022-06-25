@@ -1,13 +1,13 @@
 {
   "name": "@filipeas/artisan",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "CLI for project structuring using ExpressJs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "cli"
+    "cli", "framework", "microframework", "nodejs", "javascript", "typescript", "package"
   ],
   "bin": {
     "artisan": "./bin/v2/index.js"
