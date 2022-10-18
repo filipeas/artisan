@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+<<<<<<< HEAD
     "cli",
     "framework",
     "microframework",
@@ -14,6 +15,9 @@
     "javascript",
     "typescript",
     "package"
+=======
+    "cli", "framework", "microframework", "nodejs", "javascript", "typescript", "package"
+>>>>>>> bf348cb313fcaf4f5b247b15145db205507b133f
   ],
   "bin": {
     "artisan": "./bin/v2/index.js"
