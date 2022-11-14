@@ -1,0 +1,34 @@
+{
+  "name": "@filipeas/artisan",
+  "version": "0.3.8",
+  "description": "CLI for project structuring using ExpressJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "framework",
+    "microframework",
+    "nodejs",
+    "javascript",
+    "typescript",
+    "package"
+  ],
+  "bin": {
+    "artisan": "./bin/v2/index.js"
+  },
+  "author": "Filipe A.S",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filipeas/artisan"
+  },
+  "publishConfig": {
+    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.1",
+    "yargs": "^17.4.0"
+  }
+}
